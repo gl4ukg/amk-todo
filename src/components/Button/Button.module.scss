@@ -7,11 +7,19 @@ button {
     align-items: center;
     justify-content: center;
     border-radius: 8px; 
+    cursor: pointer;
     svg {
         font-size: 16px;
         margin-right: 20px;
     }
     p {
         color: var(--white);
+    }
+    &__transparent {
+        background-color: var(--white);
+        border: 1px solid var(--dark-grey);
+        p {
+            color: var(--dark-grey);
+        }
     }
 }

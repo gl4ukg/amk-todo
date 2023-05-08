@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 
-const AddTask = ({ task }: AddTaskProps) => {
+const AddTask = ({ task, clearTask }: AddTaskProps) => {
     const { addTask, updateTask } = useTask();
     const [title, setTitle] = useState(task?.title || '');
     const [description, setDescription] = useState(task?.description || '');
@@ -27,11 +27,11 @@ const AddTask = ({ task }: AddTaskProps) => {
         } else {
             addTask({ title, description, status });
         }
-        setTitle('');
-        setDescription('');
-        setStatus('ToDo');
+        setTitle('')
+        setDescription('')
+        setStatus('ToDo')
     };
-
+    
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
             <label>
@@ -42,7 +42,7 @@ const AddTask = ({ task }: AddTaskProps) => {
                 Description:
                 <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
             </label>
-            {task && <label>
+            {task?.title && <label>
                 Status:
                 <select value={status} onChange={(e) => setStatus(e.target.value as TaskStatus)}>
                 <option value="ToDo">ToDo</option>
@@ -53,16 +53,17 @@ const AddTask = ({ task }: AddTaskProps) => {
             </label>}
             <div className={styles.buttons}>
                 <Button 
-                    icon={task 
+                    icon={task?.title 
                         ? <FontAwesomeIcon icon={['far', 'pen-to-square']} color='white' /> 
                         : <FontAwesomeIcon icon={['fas', 'plus']} color='white' />
                     }
                     type="submit" 
-                    text={task ? 'Update' : 'Add'} 
+                    text={task?.title ? 'Update' : 'Add'} 
                 />
-                {task && <Button 
+                {task?.title && <Button 
                     type="submit" 
                     text="Cancel" 
+                    onClick={clearTask}
                 />}
             </div>
         </form>

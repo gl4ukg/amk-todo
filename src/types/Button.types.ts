@@ -5,4 +5,5 @@ export interface IButton {
     type?: string
     onClick?: () => void
     icon?: ReactNode
+    isTransparent?: boolean
 }

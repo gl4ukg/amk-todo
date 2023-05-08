@@ -1,10 +1,13 @@
+import classNames from "classnames"
 import { IButton } from "../../types/Button.types"
 import styles from "./Button.module.scss"
 
-const Button = ({ onClick, text, icon }: IButton) => {
+const Button = ({ onClick, text, icon, isTransparent }: IButton) => {
     return (
         <button 
-            className={styles.button} 
+            className={classNames(styles.button, {
+                [styles.button__transparent]: isTransparent
+            })} 
             onClick={onClick}
         >
             {icon}

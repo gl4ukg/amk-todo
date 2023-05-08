@@ -20,4 +20,5 @@ export interface ITaskContext {
 
 export interface AddTaskProps {
   task?: ITask;
+  clearTask?: () => void
 }

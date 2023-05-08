@@ -4,14 +4,19 @@ import styles from "./TaskBox.module.scss"
 import { trimTextAfterMaxChars } from "../../helpers/helpers"
 import Button from "../Button/Button.component"
 
-const TaskBox = ({ title, description, status }: ITask) => {
+const TaskBox = (item: ITask) => {
+    const { title, description, status, onSelect } = item;
     return (
         <div className={styles.box}>
             <div>
                 <p className={styles.title}>{title}</p>
                 <p className={styles.description}>{trimTextAfterMaxChars(description, 160)}</p>
             </div>
-            <div className={styles.buttons}>
+            <div 
+                data-testid="task-box"
+                onClick={() => onSelect?.(item)} 
+                className={styles.buttons}
+            >
                 <Button text={status} />
                 <FontAwesomeIcon icon={['far', 'pen-to-square']} />
             </div>
