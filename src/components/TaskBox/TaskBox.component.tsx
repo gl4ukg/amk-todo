@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { ITask } from "../../types/Task.types"
 import styles from "./TaskBox.module.scss"
 import { trimTextAfterMaxChars } from "../../helpers/helpers"
+import Button from "../Button/Button.component"
 
 const TaskBox = ({ title, description, status }: ITask) => {
     return (
@@ -11,9 +12,7 @@ const TaskBox = ({ title, description, status }: ITask) => {
                 <p className={styles.description}>{trimTextAfterMaxChars(description, 160)}</p>
             </div>
             <div className={styles.buttons}>
-                <button className={styles.addButton}>
-                    <p>{status}</p>
-                </button>
+                <Button text={status} />
                 <FontAwesomeIcon icon={['far', 'pen-to-square']} />
             </div>
         </div>

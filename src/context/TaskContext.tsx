@@ -14,42 +14,6 @@ export const useTask = () => {
 
 const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [tasks, setTasks] = useState<ITask[]>([
-    {
-      id: 1,
-      title: "Task 1",
-      description: "Task description goes here If text size is more than 3 paragraphs it is trimmed.",
-      status: "Todo",
-      history: [
-        {
-          value: 'Task description goes here If text size is more than 3 paragraphs it is trimmed.',
-          timestamp: new Date(),
-        }
-      ]
-    },
-    {
-      id: 2,
-      title: "Task 2",
-      description: "Task description goes here If text size is more than 3 paragraphs it is trimmed.",
-      status: "Todo",
-      history: [
-        {
-          value: 'Task description goes here If text size is more than 3 paragraphs it is trimmed.',
-          timestamp: new Date(),
-        }
-      ]
-    },
-    {
-      id: 3,
-      title: "Task 3",
-      description: "Task description goes here If text size is more than 3 paragraphs it is trimmed.Task description goes here If text size is more than 3 paragraphs it is trimmed.Task description goes here If text size is more than 3 paragraphs it is trimmed.Task description goes here If text size is more than 3 paragraphs it is trimmed.Task description goes here If text size is more than 3 paragraphs it is trimmed.Task description goes here If text size is more than 3 paragraphs it is trimmed.Task description goes here If text size is more than 3 paragraphs it is trimmed.Task description goes here If text size is more than 3 paragraphs it is trimmed.Task description goes here If text size is more than 3 paragraphs it is trimmed.",
-      status: "Todo",
-      history: [
-        {
-          value: 'Task description goes here If text size is more than 3 paragraphs it is trimmed.',
-          timestamp: new Date(),
-        }
-      ]
-    }
   ]);
 
   const addTask = (task: ITask) => {

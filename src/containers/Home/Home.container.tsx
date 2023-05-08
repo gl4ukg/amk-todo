@@ -1,3 +1,4 @@
+import AddTask from "../../components/AddTask/AddTask.component";
 import { Banner } from "../../components/Banner/Banner.component";
 import TaskBox from "../../components/TaskBox/TaskBox.component";
 import { useTask } from "../../context/TaskContext";
@@ -9,6 +10,9 @@ const Home = () => {
     return (
         <div className={styles.home}>
             <Banner title="Home" />
+            <div className="container">
+                <AddTask />
+            </div>
             <>
                 <Banner title="Tasks" isCurved />
                 <div className={styles.tasksContainer}>

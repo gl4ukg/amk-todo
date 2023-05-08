@@ -11,8 +11,19 @@
     -webkit-box-shadow: 4px 4px 5px 0px rgba(135,135,135,0.69);
     -moz-box-shadow: 4px 4px 5px 0px rgba(135,135,135,0.69);
     margin: 0 0 1% 0;
-    p {
+    @media only screen and (max-width: 1240px) {
+        width: 28%;
+    }
+    @media only screen and (max-width: 1080px) {
+        width: 27%;
+    }
+    @media only screen and (max-width: 575px) {
+        width: 38%;
+    }
+    .title,
+    .description {
         color: var(--black);
+        word-wrap: break-word;
     }
     .title {
         font-size: 20px;
@@ -24,17 +35,7 @@
         justify-content: space-between;
         align-items: flex-end;
         button {
-            background-color: var(--blue);
-            border: 0;
-            width: 100px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px; 
-            p {
-                color: var(--white);
-            }
+            max-width: 100px;
         }
         svg {
             font-size: 32px;
