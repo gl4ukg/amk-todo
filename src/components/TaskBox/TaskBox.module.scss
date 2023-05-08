@@ -1,0 +1,19 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 4px 4px 5px 0px rgba(135,135,135,0.69);
+    -webkit-box-shadow: 4px 4px 5px 0px rgba(135,135,135,0.69);
+    -moz-box-shadow: 4px 4px 5px 0px rgba(135,135,135,0.69);
+    p {
+        color: var(--black);
+    }
+    .title {
+        font-size: 20px;
+    }
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+}
