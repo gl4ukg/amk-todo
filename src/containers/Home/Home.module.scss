@@ -1,0 +1,11 @@
+.home {
+    .tasksContainer {
+        height: 100vh;
+        background-color: var(--light-blue);
+        > div {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 40px 0;
+        }
+    }
+}

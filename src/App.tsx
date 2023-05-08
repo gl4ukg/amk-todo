@@ -1,11 +1,13 @@
 import './App.scss';
 import Home from './containers/Home/Home.container';
+import TaskProvider from './context/TaskContext';
+import './icons/icons';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <TaskProvider>
       <Home/>
-    </div>
+    </TaskProvider>
   );
 }
 

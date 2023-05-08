@@ -1,16 +1,20 @@
-import { Task } from "../../types/Task.types"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { ITask } from "../../types/Task.types"
 import styles from "./TaskBox.module.scss"
+import { trimTextAfterMaxChars } from "../../helpers/helpers"
 
-const TaskBox = ({ title, description, status }: Task) => {
+const TaskBox = ({ title, description, status }: ITask) => {
     return (
         <div className={styles.box}>
-            <p className={styles.title}>{title}</p>
-            <p className={styles.description}>{description}</p>
+            <div>
+                <p className={styles.title}>{title}</p>
+                <p className={styles.description}>{trimTextAfterMaxChars(description, 160)}</p>
+            </div>
             <div className={styles.buttons}>
                 <button className={styles.addButton}>
-                    <p>{status} Todo</p>
+                    <p>{status}</p>
                 </button>
-                <i className="fa-solid fa-pen-to-square"></i>
+                <FontAwesomeIcon icon={['far', 'pen-to-square']} />
             </div>
         </div>
     )
