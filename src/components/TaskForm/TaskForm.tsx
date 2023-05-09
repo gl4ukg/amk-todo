@@ -72,7 +72,10 @@ const TaskForm: FC<ITaskForm> = ({ task, clearTask }) => {
                 {isEdit && <Button 
                     type="submit" 
                     text="Cancel" 
-                    onClick={clearTask}
+                    onClick={() => {
+                        clearTask?.()
+                        setEdit(false)
+                    }}
                 />}
             </div>
         </form>
