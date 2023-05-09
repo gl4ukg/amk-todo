@@ -32,7 +32,7 @@ const Home = () => {
                                     onSelect={setActiveTask}
                                 />
                             )
-                            :  <p>You have nothing to do. Go get some sleep</p>
+                            :  <p className="no-results">You have nothing to do. Go get some sleep</p>
                         }
                     </div>
                 </div>

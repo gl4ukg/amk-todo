@@ -3,22 +3,26 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: #fff;
-    width: 29%;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 4px 4px 5px 0px rgba(135,135,135,0.69);
     -webkit-box-shadow: 4px 4px 5px 0px rgba(135,135,135,0.69);
     -moz-box-shadow: 4px 4px 5px 0px rgba(135,135,135,0.69);
-    margin: 0 0 1% 0;
-    @media only screen and (max-width: 1240px) {
-        width: 28%;
+    margin: 0 0 20px 0;
+    @media only screen and (max-width: 640px) {
+        width: 40%;
+        height: 220px;
     }
-    @media only screen and (max-width: 1080px) {
-        width: 27%;
+    @media only screen and (max-width: 500px) {
+        width: 43%;
+        height: 180px;
+        padding: 10px;
     }
-    @media only screen and (max-width: 575px) {
-        width: 38%;
+    @media only screen and (max-width: 420px) {
+        width: 42%;
+        height: 180px;
     }
     .title,
     .description {
@@ -39,9 +43,21 @@
         }
         svg {
             font-size: 32px;
+            @media only screen and (max-width: 640px){
+                font-size: 26px;
+            }
         }
     }
-    &:nth-child(3n-1) {
-        margin: 0 1% 1%;
+    &:nth-child(odd) {
+        margin-right: 10px;
+        @media only screen and (max-width: 640px) {
+            margin-right: 5px;
+        }
+    }
+    &:nth-child(even) {
+        margin-left: 10px;
+        @media only screen and (max-width: 640px) {
+            margin-left: 5px;
+        }
     }
 }

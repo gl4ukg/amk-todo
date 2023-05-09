@@ -15,6 +15,7 @@ export const useTask = () => {
 const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [tasks, setTasks] = useState<ITask[]>([
   ]);
+  const [nextId, setNextId] = useState<number>(1); 
 
   const addTask = (task: ITask) => {
     const newTask: ITask = {
@@ -22,6 +23,8 @@ const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
       id: tasks.length,
       status: "ToDo", 
     }
+    setTasks([...tasks, newTask]);
+    setNextId(nextId + 1);
     setTasks([...tasks ?? [], newTask]);
   };
 
@@ -41,14 +44,16 @@ const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   };
   
   const updateTask = (id: number, updates: Partial<ITask>) => {
+    console.log(id,tasks,updates,"sa")
     setTasks((prevTasks) =>
       prevTasks.map((task) => {
         if (task.id === id) {
           const { status: prevStatus } = task;
           const { status: newStatus } = updates;
+          console.log(newStatus,"newStaus")
           const validStatuses = getValidStatuses(prevStatus);
   
-          if (newStatus && !validStatuses.includes(newStatus)) {
+          if (!validStatuses.includes(newStatus ?? '' as TaskStatus)) {
             alert(`Invalid status transition from ${prevStatus} to ${newStatus}`);
             return task;
           }
