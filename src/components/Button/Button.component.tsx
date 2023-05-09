@@ -1,8 +1,9 @@
 import classNames from "classnames"
 import { IButton } from "../../types/Button.types"
 import styles from "./Button.module.scss"
+import { FC } from "react"
 
-const Button = ({ onClick, text, icon, isTransparent }: IButton) => {
+const Button: FC<IButton> = ({ onClick, text, icon, isTransparent }) => {
     return (
         <button 
             className={classNames(styles.button, {

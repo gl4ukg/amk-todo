@@ -1,11 +1,13 @@
+import { FC } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { ITask } from "../../types/Task.types"
 import styles from "./TaskBox.module.scss"
 import { trimTextAfterMaxChars } from "../../helpers/helpers"
 import Button from "../Button/Button.component"
 
-const TaskBox = (item: ITask) => {
+const TaskBox: FC<ITask> = (item) => {
     const { title, description, status, onSelect } = item;
+
     return (
         <div className={styles.box}>
             <div>

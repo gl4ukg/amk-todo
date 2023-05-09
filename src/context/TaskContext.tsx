@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
-import { ITaskContext, ITask, TaskStatus } from "../types/Task.types";
+import { ITaskContext, ITask } from "../types/Task.types";
+import { getValidStatuses } from "../helpers/helpers";
 
 
 const TaskContext = createContext<ITaskContext | undefined>(undefined);
@@ -27,50 +28,34 @@ const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     setNextId(nextId + 1);
     setTasks([...tasks ?? [], newTask]);
   };
-
-  const getValidStatuses = (prevStatus: TaskStatus): TaskStatus[] => {
-    switch (prevStatus) {
-      case "ToDo":
-        return ["InProgress"];
-      case "InProgress":
-        return ["InQA", "Done"];
-      case "InQA":
-        return ["ToDo", "Done"];
-      case "Done":
-        return [];
-      default:
-        return [];
-    }
-  };
   
   const updateTask = (id: number, updates: Partial<ITask>) => {
-    console.log(id,tasks,updates,"sa")
-    setTasks((prevTasks) =>
-      prevTasks.map((task) => {
-        if (task.id === id) {
+    setTasks(prevTasks =>
+      prevTasks.map(task => {
+          if (task.id !== id) {
+            return task;
+          }
+
           const { status: prevStatus } = task;
           const { status: newStatus } = updates;
-          console.log(newStatus,"newStaus")
+
           const validStatuses = getValidStatuses(prevStatus);
-  
-          if (!validStatuses.includes(newStatus ?? '' as TaskStatus)) {
+          if (newStatus && !validStatuses.includes(newStatus)) {
             alert(`Invalid status transition from ${prevStatus} to ${newStatus}`);
             return task;
           }
-  
+
           const historyEntry = {
             value: `${prevStatus} -> ${newStatus}`,
             timestamp: new Date(),
           };
-  
+
           return {
             ...task,
             ...updates,
-            history: [...task.history ?? [], historyEntry],
+            history: [...(task.history ?? []), historyEntry],
           };
-        }
-        return task;
-      })
+        })
     );
   };
   

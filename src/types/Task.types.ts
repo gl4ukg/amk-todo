@@ -18,7 +18,7 @@ export interface ITaskContext {
   updateTask: (id: number, updates: Partial<ITask>) => void;
 };
 
-export interface AddTaskProps {
+export interface ITaskForm {
   task?: ITask;
   clearTask?: () => void
 }

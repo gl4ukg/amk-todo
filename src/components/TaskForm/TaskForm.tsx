@@ -1,19 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FC, ChangeEvent } from 'react';
 import { useTask } from '../../context/TaskContext';
-import { AddTaskProps, TaskStatus } from '../../types/Task.types';
-import styles from "./AddTask.module.scss"
+import { ITaskForm, TaskStatus } from '../../types/Task.types';
+import styles from "./TaskForm.module.scss"
 import Button from '../Button/Button.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import TextInput from '../Inputs/TextInput/TextInput.component';
+import { Textarea } from '../Inputs/TextArea/TextArea.component';
+import SelectInput from '../Inputs/SelectInput/SelectInput.component';
 
 
-
-const AddTask = ({ task, clearTask }: AddTaskProps) => {
+const TaskForm: FC<ITaskForm> = ({ task, clearTask }) => {
     const { addTask, updateTask } = useTask();
     const [title, setTitle] = useState(task?.title || '');
     const [description, setDescription] = useState(task?.description || '');
     const [status, setStatus] = useState<TaskStatus>(task?.status || 'ToDo');
+    const [isEdit, setEdit] = useState<boolean>(false)
 
     useEffect(() => {
+        if(task) {
+            setEdit(true)
+        }
         setTitle(task?.title || '');
         setDescription(task?.description || '');
         setStatus(task?.status || 'ToDo');
@@ -24,43 +30,45 @@ const AddTask = ({ task, clearTask }: AddTaskProps) => {
         if (title.trim() === '') return
         if (task) {
             updateTask(task?.id ?? 0, { title, description, status });
+            setEdit(false)
         } else {
             addTask({ title, description, status });
         }
         setTitle('')
         setDescription('')
         setStatus('ToDo')
-    };
+     };
     
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
-            <label>
-                Title:
-                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-            </label>
-            <label>
-                Description:
-                <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-            </label>
-            {task?.title && <label>
-                Status:
-                <select value={status} onChange={(e) => setStatus(e.target.value as TaskStatus)}>
-                <option value="ToDo">ToDo</option>
-                <option value="InProgress">InProgress</option>
-                <option value="InQA">InQA</option>
-                <option value="Done">Done</option>
-                </select>
-            </label>}
+            <TextInput
+                label="Title"
+                placeholder="Title"
+                value={title}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
+                required
+            />
+            <Textarea
+                label="Description:"
+                value={description}
+                onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
+                required
+                placeholder="Description"
+            />
+            {isEdit && <SelectInput 
+                value={status} 
+                onChange={(e: string) => setStatus(e as TaskStatus)} 
+            />}
             <div className={styles.buttons}>
                 <Button 
-                    icon={task?.title 
+                    icon={isEdit 
                         ? <FontAwesomeIcon icon={['far', 'pen-to-square']} color='white' /> 
                         : <FontAwesomeIcon icon={['fas', 'plus']} color='white' />
                     }
                     type="submit" 
-                    text={task?.title ? 'Update' : 'Add'} 
+                    text={isEdit ? 'Update' : 'Add'} 
                 />
-                {task?.title && <Button 
+                {isEdit && <Button 
                     type="submit" 
                     text="Cancel" 
                     onClick={clearTask}
@@ -70,4 +78,4 @@ const AddTask = ({ task, clearTask }: AddTaskProps) => {
     );
 };
 
-export default AddTask;
+export default TaskForm;

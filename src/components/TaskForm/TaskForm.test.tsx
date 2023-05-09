@@ -1,14 +1,14 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 import { ITask, TaskStatus } from '../../types/Task.types';
 import { useTask } from '../../context/TaskContext';
-import AddTask from './AddTask.component';
+import TaskForm from './TaskForm';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 jest.mock('../../context/TaskContext');
 
-describe('AddTask', () => {
+describe('TaskForm', () => {
   library.add(
     faPenToSquare,
     faPlus
@@ -35,7 +35,7 @@ describe('AddTask', () => {
   });
 
   it('should render the component with the correct fields', () => {
-    render(<AddTask task={mockTask} clearTask={clearTaskMock} />);
+    render(<TaskForm task={mockTask} clearTask={clearTaskMock} />);
 
     const titleInput = screen.getByLabelText('Title:');
     const descriptionInput = screen.getByLabelText('Description:');
@@ -55,7 +55,7 @@ describe('AddTask', () => {
   });
 
   test('should render the component with the correct fields when creating a new task', () => {
-    render(<AddTask task={undefined} clearTask={() => {}} />);
+    render(<TaskForm task={undefined} clearTask={() => {}} />);
     
     const titleInput = screen.getByLabelText('Title:');
     const descriptionInput = screen.getByLabelText('Description:');
@@ -73,7 +73,7 @@ describe('AddTask', () => {
       description: 'This is a test task',
       status: 'ToDo',
     };
-    render(<AddTask task={task as ITask} clearTask={() => {}} />);
+    render(<TaskForm task={task as ITask} clearTask={() => {}} />);
     
     const titleInput = screen.getByLabelText('Title:');
     const descriptionInput = screen.getByLabelText('Description:');
@@ -89,7 +89,7 @@ describe('AddTask', () => {
   });
 
   it('should update the title when the title input is changed', () => {
-    render(<AddTask task={mockTask} clearTask={clearTaskMock} />);
+    render(<TaskForm task={mockTask} clearTask={clearTaskMock} />);
 
     const titleInput = screen.getByLabelText('Title:');
 
@@ -99,7 +99,7 @@ describe('AddTask', () => {
   });
 
   it('should update the description when the description input is changed', () => {
-    render(<AddTask task={mockTask} clearTask={clearTaskMock} />);
+    render(<TaskForm task={mockTask} clearTask={clearTaskMock} />);
 
     const descriptionInput = screen.getByLabelText('Description:');
 

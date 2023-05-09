@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AddTask from "../../components/AddTask/AddTask.component";
+import TaskForm from "../../components/TaskForm/TaskForm";
 import { Banner } from "../../components/Banner/Banner.component";
 import TaskBox from "../../components/TaskBox/TaskBox.component";
 import { useTask } from "../../context/TaskContext";
@@ -14,7 +14,7 @@ const Home = () => {
         <div className={styles.home}>
             <Banner title="Home" />
             <div className="container">
-                <AddTask 
+                <TaskForm 
                     task={activeTask}
                     clearTask={() => setActiveTask({} as ITask)} 
                 />
@@ -29,7 +29,7 @@ const Home = () => {
                                     title={item.title}
                                     description={item.description}
                                     status={item.status}
-                                    onSelect={setActiveTask}
+                                    onSelect={() => setActiveTask(item)}
                                 />
                             )
                             :  <p className="no-results">You have nothing to do. Go get some sleep</p>

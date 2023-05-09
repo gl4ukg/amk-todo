@@ -1,46 +1,32 @@
-# Getting Started with Create React App
+# Todo List Assignment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The task was made using React and base in Typescript, thus there are two neccessary commands to start the app. 
 
-## Available Scripts
-
-In the project directory, you can run:
+### `npm install`
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Front End 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The app frontend is developed in React paired with a couple of different libraries to make the app more scalable and easier to manage when it comes to certain parts of front end development. We have used purely functional components in this app and we try staying that way even when using third party libraries since all of them offer out of the box hooks.
 
-### `npm test`
+## File structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Conatiners
+Inside this folder we place the container for a specific view( or page depending on the naming). Inside this container most of the time we will have just a small component that connects two or 3 main smaller components and creates the view.
 
-### `npm run build`
+### Components
+This folder contains our purest components that are essential for building everything on our app. In most cases all our inputs, buttons, wrappers and other things will have to be put here. This will not contain anything more than
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Store
+Right here we create our Context API and we configure it with all the necessary hooks, interfaces, states and functions. It is a pretty simple setup but centralized in this one single place so that we don't have our setup everywhere in our folder structure.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Types
+Here we put all our object types/interfaces since we are using typescript and we don't want to use any for our variable and function typing(Only in rare cases where we use any as a type of generic so that the function can be dynamic)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Testing
 
-### `npm run eject`
+All our tests should be written next to the file as such <file_name>.test.ts. We do this so that we have an easier time finding tests for our code since doing a seperate directory and trying to mimic the folder structure 1 to 1 is a really tough job and makes it confusing for everyone. We use React Testing Library and jest as a default framework for testing.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### `npm run test`
+This command will run all the tests and will start watch mode, so any change you make it will automaticlly run all of the tests.
