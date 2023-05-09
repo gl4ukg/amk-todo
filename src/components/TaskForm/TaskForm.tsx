@@ -37,6 +37,7 @@ const TaskForm: FC<ITaskForm> = ({ task, clearTask }) => {
         setTitle('')
         setDescription('')
         setStatus('ToDo')
+        clearTask?.()
      };
     
     return (

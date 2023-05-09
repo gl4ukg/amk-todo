@@ -32,32 +32,35 @@ const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   const updateTask = (id: number, updates: Partial<ITask>) => {
     setTasks(prevTasks =>
       prevTasks.map(task => {
-          if (task.id !== id) {
-            return task;
-          }
-
-          const { status: prevStatus } = task;
-          const { status: newStatus } = updates;
-
+        if (task.id !== id) {
+          return task;
+        }
+  
+        const { status: prevStatus } = task;
+        const { status: newStatus, ...otherUpdates } = updates;
+  
+        let updatedTask = { ...task, ...otherUpdates };
+  
+        if (newStatus !== undefined) {
           const validStatuses = getValidStatuses(prevStatus);
-          if (newStatus && !validStatuses.includes(newStatus)) {
+          if (!validStatuses.includes(newStatus)) {
             alert(`Invalid status transition from ${prevStatus} to ${newStatus}`);
             return task;
           }
-
+  
           const historyEntry = {
             value: `${prevStatus} -> ${newStatus}`,
             timestamp: new Date(),
           };
-
-          return {
-            ...task,
-            ...updates,
-            history: [...(task.history ?? []), historyEntry],
-          };
-        })
+  
+          updatedTask = { ...updatedTask, status: newStatus, history: [...(task.history ?? []), historyEntry] };
+        }
+  
+        return updatedTask;
+      })
     );
   };
+  
   
 
   return (

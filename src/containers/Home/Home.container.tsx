@@ -16,7 +16,7 @@ const Home = () => {
             <div className="container">
                 <TaskForm 
                     task={activeTask}
-                    clearTask={() => setActiveTask({} as ITask)} 
+                    clearTask={() => setActiveTask(undefined)} 
                 />
             </div>
             <>

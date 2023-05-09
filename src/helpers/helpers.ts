@@ -10,13 +10,13 @@ export const trimTextAfterMaxChars = (text: string, maxChars: number) => {
 export const getValidStatuses = (prevStatus: TaskStatus): TaskStatus[] => {
     switch (prevStatus) {
       case "ToDo":
-        return ["InProgress"];
+        return ["ToDo", "InProgress"];
       case "InProgress":
-        return ["InQA", "Done"];
+        return ["ToDo", "InProgress", "InQA", "Done"];
       case "InQA":
-        return ["ToDo", "Done"];
+        return ["InQA", "InProgress"];
       case "Done":
-        return [];
+        return ["Done"];
       default:
         return [];
     }
